@@ -1,10 +1,8 @@
-# Conversation Sample Application [![Build Status](https://travis-ci.org/watson-developer-cloud/conversation-simple.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/conversation-simple) [![codecov.io](https://codecov.io/github/watson-developer-cloud/conversation-simple/coverage.svg?branch=master)](https://codecov.io/github/watson-developer-cloud/conversation-simple?branch=master)
+# Florence Chatbot
 
-This Node.js app demonstrates the Conversation service in a simple chat interface simulating a cognitive car dashboard.
+This Node.js app demonstrates the Conversation service in a simple chat interface simulating a Flower Shop.
 
 ![Demo](readme_images/demo.gif)
-
-You can view a [demo][demo_url] of this app.
 
 ## Before you begin
 
@@ -22,20 +20,26 @@ If you want to modify the app or use it as a basis for building your own app, in
 
 ### Getting the files
 
-Use GitHub to clone the repository locally, or [download the .zip file](https://github.com/watson-developer-cloud/conversation-simple/archive/master.zip) of the repository and extract the files.
+Use GitHub to clone the repository locally, or [download the .zip file](https://github.com/arpitjainds/Florence-Chatbot/archive/master.zip) of the repository and extract the files.
+
+### Setting the Proxy environment variables
+
+Use the following Commands if you are on the proxy network.
+
+[Set variables here](https://docs.cloudfoundry.org/cf-cli/http-proxy.html)
 
 ### Setting up the Conversation service
 
 You can use an exisiting instance of the Conversation service. Otherwise, follow these steps.
 
-1. At the command line, go to the local project directory (`conversation-simple`).
+1. At the command line, go to the local project directory (`Florence-Chatbot`).
 
-1. Connect to Bluemix with the Cloud Foundry command-line tool. For more information, see the Watson Developer Cloud [documentation][cf_docs].
+1. Connect to Bluemix with the Cloud Foundry command-line tool. Use one of these regions - eu-gb,ng,eu-de,su-syd,us-east
     ```bash
-    cf login
+    cf login -a https://api.eu-gb.bluemix.net
     ```
-
-1. Create an instance of the Conversation service in Bluemix. For example:
+    
+1. Create an instance of the Conversation service in Bluemix.(If you already have an instance, don't follow this step) For example:
 
     ```bash
     cf create-service conversation free my-conversation-service
@@ -53,13 +57,13 @@ You can use an exisiting instance of the Conversation service. Otherwise, follow
 
 1. Click the **Import workspace** icon in the Conversation service tool. Specify the location of the workspace JSON file in your local copy of the app project:
 
-    `<project_root>/training/car_workspace.json`
+    `<project_root>/training/Florence-Chatbot.json`
 
 1. Select **Everything (Intents, Entities, and Dialog)** and then click **Import**. The car dashboard workspace is created.
 
 ### Configuring the app environment
 
-1. Copy or rename the `.env.example` file to `.env` (nothing before the dot).
+1. Copy or rename the `envexample.env` file to `.env` (nothing before the dot). If windows is preventing renaming the file follow [this](https://stackoverflow.com/questions/5004633/how-to-manually-create-a-file-with-a-dot-prefix-in-windows-for-example-htacce).
 
 1. Create a service key in the format `cf create-service-key <service_instance> <service_key>`. For example:
 
@@ -122,21 +126,14 @@ After your app is installed and running, experiment with it to see how it respon
 
 The chat interface is on the left, and the JSON that the JavaScript code receives from the Conversation service is on the right. Your questions and commands are interpreted using a small set of sample data trained with the following intents:
 
-    turn_on
-    turn_off
-    turn_up
-    turn_down
-    traffic_update
-    locate_amenity
-    weather
-    phone
-    capabilities
+    buy flowers for some occasion
+    buy flowers for someone
+    suggest flowers
+    buy flowers
     greetings
     goodbyes
 
-Type a request, such as `music on` or `I want to turn on the windshield wipers`. The system understands your intent and responds. You can see the details of how your input was understood by examining the JSON data in the `Watson understands` section on the right side.
-
-For example, if you type `Turn on some music`, the JSON data shows that the system understood the `turn_on` intent with a high level of confidence, along with the `appliance` entity with a value of `music`.
+Type a request, such as `buy flowers` or `I want buy some flowers for anniversary`. The system understands your intent and responds. You can see the details of how your input was understood by examining the JSON data in the `Watson understands` section on the right side.
 
 For more information about intents, see the [Conversation service documentation][doc_intents].
 
@@ -193,28 +190,3 @@ If you encounter a problem, you can check the logs for more information. To see 
 ```none
 cf logs <application-name> --recent
 ```
-
-## License
-
-This sample code is licensed under Apache 2.0.
-Full license text is available in [LICENSE](LICENSE).
-
-## Contributing
-
-See [CONTRIBUTING](CONTRIBUTING.md).
-
-## Open Source @ IBM
-
-Find more open source projects on the
-[IBM Github Page](http://ibm.github.io/).
-
-
-[cf_docs]: (https://console.bluemix.net/docs/services/watson/getting-started-cf.html)
-[cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
-[demo_url]: http://conversation-simple.ng.bluemix.net/
-[doc_intents]: (https://console.bluemix.net/docs/services/conversation/intents-entities.html#planning-your-entities)
-[docs]: https://console.bluemix.net/docs/services/conversation/index.html
-[docs_landing]: (https://console.bluemix.net/docs/services/conversation/index.html)
-[node_link]: (http://nodejs.org/)
-[npm_link]: (https://www.npmjs.com/)
-[sign_up]: bluemix.net/registration
