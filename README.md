@@ -3,7 +3,7 @@
 This Node.js app demonstrates the Conversation service in a simple chat interface simulating a Flower Shop. 
 A Live version can be checked out [here](http://florencechatbot.eu-gb.mybluemix.net/)
 
-![Demo](readme_images/demo.gif)
+![Demo](readme_images/main.gif)
 
 ## Before you begin
 
